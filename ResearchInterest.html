@@ -1,173 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-.header {
-  padding: 40px; /* some padding */
-  text-align: center; /* center the text */
-  /*background: #1abc9c;  green background */
-  background: #1f77b4ff; /* blue background */
-  color: white; /* white text color */
-}
-
-/* Increase the font size of the <h1> element */
-header h1 {
-  font-size: 80px;
-}
-/* Style the top navigation bar */
-.navbar {
-  overflow: hidden; /* Hide overflow */
-  background-color: #333; /* Dark background color */
-}
-
-/* Style the navigation bar links */
-.navbar a {
-  float: left; /* Make sure that the links stay side-by-side */
-  display: block; /* Change the display to block, for responsive reasons (see below) */
-  color: white; /* White text color */
-  text-align: center; /* Center the text */
-  padding: 14px 20px; /* Add some padding */
-  text-decoration: none; /* Remove underline */
-}
-
-/* Right-aligned link */
-.navbar a.right {
-  float: right; /* Float a link to the right */
-}
-
-/* Change color on hover/mouse-over */
-.navbar a:hover {
-  background-color: #ddd; /* Grey background color */
-  color: black; /* Black text color */
-}
-/* Ensure proper sizing */
-* {
-  box-sizing: border-box;
-}
-
-/* Column container */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* Create two unequal columns that sits next to each other */
-/* Sidebar/left column */
-.side {
-  flex: 30%; /* Set the width of the sidebar */
-  background-color: #f1f1f1; /* Grey background color */
-  padding: 20px; /* Some padding */
-}
-
-/* Main column */
-.main {
-  flex: 70%; /* Set the width of the main content */
-  background-color: white; /* White background color */
-  padding: 20px; /* Some padding */
-}
-
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
-  .row {
-    flex-direction: column;
-  }
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-  .navbar a {
-    float: none;
-    width: 100%;
-  }
-}
-.footer {
-  font-size: 10px;
-  padding: 20px; /* Some padding */
-  text-align: center; /* Center text*/
-  background: #ddd; /* Grey background */
-}
-</style>
-</head>
-<body>
-
-<div class="header">
-  <h1>吴冠中 Guanzhong Wu Website</h1>
-  <p>Welcome!</p>
-</div>
-
-<div class="navbar">
-  <a href="https://drizzwu.github.io/#">Home</a>
-  <a href="https://drizzwu.github.io/ResearchInterest">Research Interest</a>
-  <a href="https://drizzwu.github.io/publication">Publication</a>
-  <a href="./BlogGate">Blog</a>
-  <a href="https://drizzwu.github.io/contact" class="right">Contact</a>
-</div>
-
+---
+layout: default
+title: Research Interest
+permalink: /ResearchInterest/
+---
 <div class="row">
-  <div class="side">
-	
-  </div>
+  <div class="side"></div>
   <div class="main">
-	<h1> 1. Nanoscale MRI </h1>
-	<p>
-	Magnetic resonance imaging (MRI) technique is a non-invasive technique to acquire structral information of the an object 
-	by detecting the radio freqeucny (RF) response. Traditional MRI technique utilizes strong magnetic field gradient to 
-	confine the RF response to a narrow spacial slice. MRI scanner for medical use can acieve spatial resolution 
-	in the order of 1mm. Further spatial reolution improvement is hamperred by the difficulty of generating larger field 
-	gradient using electromagentic coils. However, multiple nanoscale MRI techniques has been achieved in laborotary and 
-	which give unprecedented information of spin dynamics in magnetic nanostructures. 
-	</p>
-	<h2> Magentic Force Microscope (MRFM) </h2>
-	<p>
-	I am focuing on one of the techniques called magnetic resonance force microscope (MRFM) in Prof. P. Chris Hammel's group.
-	Like magnetic force microscope, MRFM detect magnetic information inside the sample through magnetic dipolar interaction. 
-	Imaging of single electron spin has been achieved (Rugar, Daniel, et al. Nature 430.6997 (2004): 329-332.). It 
-	</p>
-	<p>
-	My research focuses on developing ferromagnetic resonance force microscope (FMRFM), an extended mode of MRFM, and utilizing it to study 
-	the various magnetic nanostructrues. In ferromagetic material, due to strong exchange 
-	interaction, it is generally difficult to achieve local MRI which requires the isolation of a small volume of material from its 
-	strongly coupled environment. The novelty of FMRFM is that its magnetic tip generates a local field well strong enough to 
-	hold localzied standing spin wave modes (LMs) analogous to the spin wave modes in a ferromagentic disk. The detection is through 
-	the magnetic dipolar interaction between the LMs and the magnetic tip since the precession of LMs will cause local reduction of 
-	magnetization. The spatial resolution of FMRFM is generally determined by the radius of localized modes, which is in the order of 
-	1 micron, although higher spatial resolution can be achieved utilizing multi-mode imaging.
-	</p>
-	<IMG SRC="FMRFM_LMs.png" alt="FMRFM and localized modes" width="408" height="256">
-	<p>
-	One of the recent success of  FMRFM is in studying interfacial magnetic interaction in ferromagnet/non-magnetic material heterostructures. 
-	</p>
-	<IMG SRC="sFMRFM_2D.png" alt="FMRFM scanning across 2D material" width="389" height="256">
-	
-	<h2> Nitrogen Vacancy (NV) Center </h2>
-	<p>
-	</p>
-	<IMG SRC="NV_domain9.png" alt="NV scanning on domain wall" width="455" height="256">
-	
-	<h1> 2. Hybrid Magnonics </h1>
-	<p> 
-	Magnon as information carrier have many advantages compare to electrons in traditional electronic devices. Without scattering between itinerant electrons with atomic ions, magnon transport produce much less Joule heating. Currently, two paths to achieve magnonic devices are: 
-	</p>
-	<p>
-	1. Wave transport of low frequency coherent magnons.
-	</p>
-	<p>
-	2. Diffusive transport of high frequency incoherent magnons.
-	</p>
-	<h1> 3. Micromagnetic Simulation </h1>
-	<p>
-	Micromagnetic simulation is a strong tool to numerically simulate the response of ferromagnetic materials and structures to external excitation.
-	</p>
+    <h1>1. Nanoscale MRI</h1>
+    <p>
+      Magnetic resonance imaging (MRI) technique is a non-invasive technique to acquire structural information of an object
+      by detecting the radio frequency (RF) response. Traditional MRI technique utilizes strong magnetic field gradient to
+      confine the RF response to a narrow spatial slice. MRI scanner for medical use can achieve spatial resolution
+      in the order of 1mm. Further spatial resolution improvement is hampered by the difficulty of generating larger field
+      gradient using electromagnetic coils. However, multiple nanoscale MRI techniques has been achieved in laboratory and
+      which give unprecedented information of spin dynamics in magnetic nanostructures.
+    </p>
+    <h2>Magnetic Force Microscope (MRFM)</h2>
+    <p>
+      I am focusing on one of the techniques called magnetic resonance force microscope (MRFM) in Prof. P. Chris Hammel's group.
+      Like magnetic force microscope, MRFM detect magnetic information inside the sample through magnetic dipolar interaction.
+      Imaging of single electron spin has been achieved (Rugar, Daniel, et al. Nature 430.6997 (2004): 329-332.).
+    </p>
+    <p>
+      My research focuses on developing ferromagnetic resonance force microscope (FMRFM), an extended mode of MRFM, and utilizing it to study
+      the various magnetic nanostructures. In ferromagnetic material, due to strong exchange
+      interaction, it is generally difficult to achieve local MRI which requires the isolation of a small volume of material from its
+      strongly coupled environment. The novelty of FMRFM is that its magnetic tip generates a local field well strong enough to
+      hold localized standing spin wave modes (LMs) analogous to the spin wave modes in a ferromagnetic disk. The detection is through
+      the magnetic dipolar interaction between the LMs and the magnetic tip since the precession of LMs will cause local reduction of
+      magnetization. The spatial resolution of FMRFM is generally determined by the radius of localized modes, which is in the order of
+      1 micron, although higher spatial resolution can be achieved utilizing multi-mode imaging.
+    </p>
+    <img src="{{ '/FMRFM_LMs.png' | relative_url }}" alt="FMRFM and localized modes" width="408" height="256">
+    <p>
+      One of the recent success of FMRFM is in studying interfacial magnetic interaction in ferromagnet/non-magnetic material heterostructures.
+    </p>
+    <img src="{{ '/sFMRFM_2D.png' | relative_url }}" alt="FMRFM scanning across 2D material" width="389" height="256">
+
+    <h2>Nitrogen Vacancy (NV) Center</h2>
+    <img src="{{ '/NV_domain9.png' | relative_url }}" alt="NV scanning on domain wall" width="455" height="256">
+
+    <h1>2. Hybrid Magnonics</h1>
+    <p>
+      Magnon as information carrier have many advantages compare to electrons in traditional electronic devices. Without scattering between itinerant electrons with atomic ions, magnon transport produce much less Joule heating. Currently, two paths to achieve magnonic devices are:
+    </p>
+    <p>1. Wave transport of low frequency coherent magnons.</p>
+    <p>2. Diffusive transport of high frequency incoherent magnons.</p>
+
+    <h1>3. Micromagnetic Simulation</h1>
+    <p>
+      Micromagnetic simulation is a strong tool to numerically simulate the response of ferromagnetic materials and structures to external excitation.
+    </p>
   </div>
 </div>
-<div class="footer">
-  <h2>Last updated 3/18/2021</h2>
-</div>
-</body>
-</html>

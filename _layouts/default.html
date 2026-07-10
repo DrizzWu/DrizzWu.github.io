@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+
+<div class="header">
+  <h1>吴冠中 Guanzhong Wu Website</h1>
+  <p>Welcome!</p>
+</div>
+
+<div class="navbar">
+  <a href="{{ '/' | relative_url }}" {% if page.title == 'Home' %}class="active"{% endif %}>Home</a>
+  <a href="{{ '/ResearchInterest/' | relative_url }}" {% if page.title == 'Research Interest' %}class="active"{% endif %}>Research Interest</a>
+  <a href="{{ '/publication/' | relative_url }}" {% if page.title == 'Publication' %}class="active"{% endif %}>Publication</a>
+  <a href="{{ '/blog/' | relative_url }}" {% if page.title == 'Blog' %}class="active"{% endif %}>Blog</a>
+  <a href="{{ '/contact/' | relative_url }}" class="right{% if page.title == 'Contact' %} active{% endif %}">Contact</a>
+</div>
+
+{{ content }}
+
+<div class="footer">
+  <p>Last updated {{ site.time | date: "%-m/%-d/%Y" }}</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+title: 吴冠中 Guanzhong Wu
+description: Research website and blog — physics, nanoscale MRI, magnonics
+baseurl: ""
+url: "https://drizzwu.github.io"
+
+markdown: kramdown
+permalink: pretty
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
