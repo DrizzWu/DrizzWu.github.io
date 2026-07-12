@@ -15,7 +15,7 @@ Consider the tunneling junction dielectric layer of a number of N MTJs, during t
 This kind of distribution is quite countrary to the instinct sometimes. The breakdown cycle of MTJ could span across multiple order of magnitude, as shown in an example calculation below with shape parameter \(k = 1.2), and scale parameter \(\lambda = 10^15). \(\lambda) is the characteristic breakdown cycle of the MTJ devices when they have ~63% probability of breakdown.
 
 <figure>
-  <img src = "D:\GitHub\DrizzWu.github.io\assets\images\weibull_interval_plot.png" alt = "Weibull Distribution">
+  <img src = "/assets/images/weibull_interval_plot.png" alt = "Weibull Distribution">
   <figcaption> Figure 1: Weibull distribution calculated
 </figure>
 
