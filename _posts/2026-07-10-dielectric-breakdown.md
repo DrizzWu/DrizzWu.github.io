@@ -12,10 +12,12 @@ I will further limit the scope of this post to MRAM, since this is what I worked
 
 Consider the tunneling junction dielectric layer of a number of N MTJs, during the operation of MRAM, these MTJs are stressed by pulsed voltage for writing. And as the number of pulse increases, some of the MTJs will breakdown. Let's call the pulse number of a certain MTJ breakdown happens the breakdown cyclel, the nature of dielectric breakdown states that the probability v.s. breakdown cycle needs to be analyzed in a log-log scale. To the first order, the breakdown cycle distribution can be approximated by a Weibull distribution, which basically states that the log(probability) is linear to log(breakdown cycle) until the cumulative probability saturates at 100%.
 
-This kind of distribution is quite countrary to the instinct sometimes. The breakdown cycle of MTJ could span across multiple order of magnitude, as shown in an example calculation below with shape parameter \(k = 1.2), and scale parameter \(\lambda = 10^15). \(\lambda) is the characteristic breakdown cycle of the MTJ devices when they have ~63% probability of breakdown.
+This kind of distribution is quite countrary to the instinct sometimes. The breakdown cycle of MTJ could span across multiple order of magnitude, as shown in an example calculation below with shape parameter $k = 1.2$, and scale parameter $\lambda = 10^15$. $\lambda$ is the characteristic breakdown cycle of the MTJ devices when they have ~63% probability of breakdown.
 
 <figure>
   <img src = "/assets/images/weibull_interval_plot.png" alt = "Weibull Distribution">
   <figcaption> Figure 1: Weibull distribution calculated </figcaption>
 </figure>
+
+From the plot it is clear that even though the breakdown cycle being $10^15$ has a probability of 63%, there is 0.001% possibility the the MTJ will breakdown in the window of  $10^10 ~ 10^11$. It seems unlikely and can be omitted, but for a memory industry, this is not a ignorable source of error, since 0.001% equals 10ppm, and is considered a significant source of error.
 
