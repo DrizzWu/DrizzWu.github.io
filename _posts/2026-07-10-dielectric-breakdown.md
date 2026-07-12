@@ -16,6 +16,6 @@ This kind of distribution is quite countrary to the instinct sometimes. The brea
 
 <figure>
   <img src = "/assets/images/weibull_interval_plot.png" alt = "Weibull Distribution">
-  <figcaption> Figure 1: Weibull distribution calculated
+  <figcaption> Figure 1: Weibull distribution calculated </figcaption>
 </figure>
 
