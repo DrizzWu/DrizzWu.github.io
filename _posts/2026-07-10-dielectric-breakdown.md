@@ -35,3 +35,83 @@ When a word in the memory contains uncorrectable error, the chip fails. Then we 
 
 For example, consider a 1Mbit memory with x16 word length and 2 bit error correction, it has $2^{16} = 65536$ addresses, and each address has 16 bits of data and 8 bits of ecc. Now let's calculate what is the possibility of this chip to contain an uncorrectable error, and therefore, fails.
 
+# Chip Failure Probability from Bit Error Rate (BER)
+
+This document summarizes the probabilistic model implemented in `memory_error_probability.py`, which computes the probability that **at least one address** in a memory chip has **more than a threshold number of bit errors**, given a per-bit error rate.
+
+## 1. Parameters
+
+| Symbol | Meaning | Code variable |
+| --- | --- | --- |
+| $B$ | bits per address | `BITS` |
+| $T$ | error threshold (a "bad" address has $> T$ errors) | `THRESH` |
+| $D$ | density exponent | `density` |
+| $N = 2^{D}$ | number of addresses in the chip | `n_addr` |
+| $x$ | bit error rate in parts-per-million (ppm) | `x_ppm` |
+| $p = x \times 10^{-6}$ | per-bit error probability | `p` |
+
+## 2. Model Assumptions
+
+Each bit fails **independently** with probability $p$. This gives a two-layer hierarchy: bits within an address, and addresses within the chip.
+
+## 3. Layer 1 — Single Address
+
+Let $K$ be the number of failed bits within one address. Since $B$ bits each fail independently with probability $p$:
+
+$$
+K \sim \text{Binomial}(B, p)
+$$
+
+An address is **bad** if it has more than $T$ bit errors, i.e. $K \ge T+1$. The probability of a bad address is computed via the complement (summing the exact CDF up to $T$ to avoid cancellation):
+
+$$
+q = P(K > T) = P(K \ge T+1) = 1 - \sum_{k=0}^{T} \binom{B}{k}\, p^{k}\, (1-p)^{B-k}
+$$
+
+## 4. Layer 2 — Whole Chip
+
+Let $M$ be the number of bad addresses among all $N$ addresses. Since each address is independently bad with probability $q$:
+
+$$
+M \sim \text{Binomial}(N, q)
+$$
+
+The chip **fails** if at least one address is bad ($M \ge 1$). Using the complement (no address is bad):
+
+$$
+P(M \ge 1) = 1 - (1-q)^{N}
+$$
+
+This closed form is **exact** and is evaluated in high precision (60 digits via `mpmath`) to avoid catastrophic cancellation when $q$ is tiny.
+
+## 5. Poisson Approximation
+
+When $q$ is very small and $N$ is large, the expected number of bad addresses is:
+
+$$
+\lambda = N\,q
+$$
+
+The number of bad addresses is approximately Poisson distributed, giving:
+
+$$
+P(M \ge 1) \approx 1 - e^{-\lambda} = 1 - e^{-N q}
+$$
+
+For small $\lambda$, this further reduces to $P(M \ge 1) \approx \lambda = N q$.
+
+## 6. Summary of the Full Calculation
+
+Starting from the input BER $x$ (ppm), the chip failure probability is:
+
+$$
+P(\text{chip fails})
+= 1 - \left[ \sum_{k=0}^{T} \binom{B}{k}\, p^{k}\, (1-p)^{B-k} \right]^{N},
+\qquad p = x \times 10^{-6},\quad N = 2^{D}
+$$
+
+with the Poisson cross-check:
+
+$$
+P(\text{chip fails}) \approx 1 - \exp\!\left(-N\left[1 - \sum_{k=0}^{T} \binom{B}{k}\, p^{k}\, (1-p)^{B-k}\right]\right)
+$$
