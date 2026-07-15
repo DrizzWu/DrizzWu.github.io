@@ -101,22 +101,41 @@ From the previous discussion, we can conclude the behavior of the MRAM under str
 
 Now, let's consider the fundamental question we set out to resolve: how should the lifetime of MRAM be defined?
 
-## Breakdown cycle
+## 1. Breakdown cycle
 Could the MRAM lifetime be defined with a single number representing the breakdown cycle? As we discussed above, the MTJ do not breakdown at the same time. In fact, the breakdown cycle distribute across a vast range of multiple orders. Thus, it does not make sense to mark the lifetime of all MTJ by a single breakdown cycle. And it does not reflect the true behavior of how the MRAM endurance looks like.
 
-## Breakdown cycle associated with a certain BER
+## 2. Number of cycle associated with a certain BER
 This is a more scientific accurate method to characterize the lifetime of MRAM. In fact, most literatures published on this topic uses this way to show their MTJ performance. However, a major setback with this method is that it is not straightforward for people not familiar with this topic. In particular, BER is usually masked by error correction method in the memory, and does not translate simply to the failure rate of the chip
 
-## Breakdown cycle associated with a certain chip failure rate
+For example: 
+$10^{12}$ cycle BER increase < 10ppm
+
+## 3. Number of cycle associated with a certain chip failure rate
 As shown by above discussion, this method is both scientifically accurate and understandable to users, as it takes into account of the error correction. However, it could be difficult for users to apply. The problem is that in application, users do not know how many cycles they have stressed each cell. 
 
-## Lifetime associated with a certain chip failure rate
+For example: 
+$10^{12}$ cycle chip failrate < 1ppm
+
+## 4. Lifetime associated with a certain chip failure rate
 A more user friendly way to describe is to characterize the endurance using lifetime associated with a certain chip failure rate. For example, a MRAM chip can run 1000h with chip failure rate of 1 in 1million. But there is underlying assumption for this method: assuming that the memory is stressed evenly across all address during operation. This underlying assumption should be made clear to users to avoid overstressing part of the memory.
 
-There is a standard definition of failure in time parameter in the high-reliability field. In our previous example, 1000h of 1 in 1million failure rate is called 1FIT
+For example: 
+1000 hours chip failrate < 1ppm
+
+There is a standard definition of failure in time parameter in the high-reliability field. In our previous example, 1000h of 1 in 1million chip failrate is called 1FIT
 
 $$
-FIT = \frac{10^9 * fail rate}{time}
+FIT = \frac{10^9 * failrate}{time}
 $$
 
 However, this method assumes that the failure rate is a constant overtime, which is not the case in dielectric breakdown. In fact, the failure rate increases as the MRAM get stressed, similar to wear out behavior. Therefore, FIT definition does not apply to MRAM as the characterizing parameter of endurance.
+
+# How to qualify the MRAM lifetime
+
+Qualifying MRAM lifetime is time consuming, and requires careful handling on the result. 
+
+For MRAM lifetime specified using **method 2** and **method 3** in the previous section, a fast but coarse qualification method is to select a small section of the memory, and run to the specified number of cycle. Since BER increase or chip failrate is usually very low at specified cycle, at ppm level, these small section of the memory should not show failure if any.
+
+However, for lifetime specified using **method 4**, this method could cause misintepretation of the result. If only a small section of the memory was chosen to run to the specified hours, this small section will be overstressed and show early failure way before the specified lifetime is reached.
+
+For more careful characterization of MTJ endurance during product development phase, the above method will not be enough since it is only a pass/fail test, and do not analyze the distribution of the breakdown cycle of the MTJs. In this case, careful Weibull analysis is needed to characterize the shape and characteristic breakdown cycle of the Weibull distribution. As the MRAM usually is designed for high reliability application, it could be time consuming to characterize the actual distribution at working condition. Usually an acceleration method, either by increase working voltage or temperature, is applied and the actual characteristic is extrapolated from linear fit. The detail of how to perform this measurement will not be covered here. 
