@@ -27,7 +27,7 @@ MRAM is usually designed with ECC to overcome various type of errors. It means t
 
 # From BER to Failure Rate
 
-Bits in memory is grouped into words so that each words can store complicated information like numbers, characters, etc. For memory with ECC, each words are sepearated into data part and ecc part. For example, for a x16 memory with 2 bit correctable ecc, its data contains 16 bits and ecc contains 8 bits.
+Bits in memory are grouped into words so that each word can store complicated information like numbers, characters, etc. For memory with ECC, each words are sepearated into data part and ecc part. For example, for a x16 memory with 2 bit correctable ecc, its data contains 16 bits and ecc contains 8 bits.
 
 When a word in the memory contains uncorrectable error, the chip fails. Then we can calculate the chip fail rate if we know the BER, the word strcuture, and the capacity of the chip. Below, I show the math of computing the probability that **at least one address** in a memory chip has **more than a threshold number of bit errors**, given a per-bit error rate.
 
@@ -92,3 +92,31 @@ With the above math, $P(\text{chip fails})$ v.s. $x = BER(ppm)$ looks like the f
   <img src = "/assets/images/memory_error_results_24_2_1.png" alt = "Chip failure rate">
   <figcaption> Figure 2: 1Mbit chip fail rate calculated from BER </figcaption>
 </figure>
+
+# How to specify MRAM lifetime
+
+From the previous discussion, we can conclude the behavior of the MRAM under stress as follows:
+	1. the BER keeps increasing due to the irreversible MTJ breakdown
+	2. As BER increase, the chip failure rate also increases
+
+Now, let's consider the fundamental question we set out to resolve: how should the lifetime of MRAM be defined?
+
+## Breakdown cycle
+Could the MRAM lifetime be defined with a single number representing the breakdown cycle? As we discussed above, the MTJ do not breakdown at the same time. In fact, the breakdown cycle distribute across a vast range of multiple orders. Thus, it does not make sense to mark the lifetime of all MTJ by a single breakdown cycle. And it does not reflect the true behavior of how the MRAM endurance looks like.
+
+## Breakdown cycle associated with a certain BER
+This is a more scientific accurate method to characterize the lifetime of MRAM. In fact, most literatures published on this topic uses this way to show their MTJ performance. However, a major setback with this method is that it is not straightforward for people not familiar with this topic. In particular, BER is usually masked by error correction method in the memory, and does not translate simply to the failure rate of the chip
+
+## Breakdown cycle associated with a certain chip failure rate
+As shown by above discussion, this method is both scientifically accurate and understandable to users, as it takes into account of the error correction. However, it could be difficult for users to apply. The problem is that in application, users do not know how many cycles they have stressed each cell. 
+
+## Lifetime associated with a certain chip failure rate
+A more user friendly way to describe is to characterize the endurance using lifetime associated with a certain chip failure rate. For example, a MRAM chip can run 1000h with chip failure rate of 1 in 1million. But there is underlying assumption for this method: assuming that the memory is stressed evenly across all address during operation. This underlying assumption should be made clear to users to avoid overstressing part of the memory.
+
+There is a standard definition of failure in time parameter in the high-reliability field. In our previous example, 1000h of 1 in 1million failure rate is called 1FIT
+
+$$
+FIT = \frac{10^9 * fail rate}{time}
+$$
+
+However, this method assumes that the failure rate is a constant overtime, which is not the case in dielectric breakdown. In fact, the failure rate increases as the MRAM get stressed, similar to wear out behavior. Therefore, FIT definition does not apply to MRAM as the characterizing parameter of endurance.
